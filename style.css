@@ -1,0 +1,657 @@
+/* ========================================
+   BIRTHDAY DIGITAL MAGAZINE
+   ======================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #08080d;
+    --text: #f8f4ef;
+    --muted: #c5beb7;
+    --accent: #f0b6a8;
+    --gold: #e8c98f;
+}
+
+
+/* ========================================
+   BODY
+   ======================================== */
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    font-family: Georgia, "Times New Roman", serif;
+    background: var(--bg);
+    color: var(--text);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* ========================================
+   BACKGROUND
+   ======================================== */
+
+body::before {
+    content: "";
+
+    position: fixed;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(240, 182, 168, 0.14),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 80% 80%,
+            rgba(232, 201, 143, 0.10),
+            transparent 30%
+        );
+
+    pointer-events: none;
+}
+
+
+/* ========================================
+   MAGAZINE
+   ======================================== */
+
+.magazine {
+    width: min(100vw, 430px);
+    height: 100vh;
+    max-height: 900px;
+
+    position: relative;
+}
+
+
+/* ========================================
+   PAGE
+   ======================================== */
+
+.page {
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+
+    padding: 25px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: translateX(50px);
+
+    transition:
+        opacity 0.6s ease,
+        transform 0.6s ease;
+
+    background:
+        radial-gradient(
+            circle at top,
+            #3b2634,
+            #111018 55%,
+            #07070b
+        );
+}
+
+
+.page.active {
+    opacity: 1;
+    visibility: visible;
+
+    transform: translateX(0);
+}
+
+
+/* ========================================
+   PAGE CONTENT
+   ======================================== */
+
+.page-content {
+    width: 100%;
+    max-height: 94vh;
+
+    overflow-y: auto;
+
+    text-align: center;
+
+    padding: 20px 10px;
+
+    scrollbar-width: none;
+}
+
+.page-content::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* ========================================
+   COVER
+   ======================================== */
+
+.cover {
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+}
+
+
+.small-text {
+    font-size: 11px;
+
+    letter-spacing: 4px;
+
+    opacity: 0.65;
+
+    margin-bottom: 25px;
+}
+
+
+h1 {
+    font-size: clamp(45px, 13vw, 70px);
+
+    font-weight: normal;
+
+    font-style: italic;
+
+    margin-bottom: 15px;
+}
+
+
+h2 {
+    font-size: 32px;
+
+    font-weight: normal;
+
+    margin-bottom: 25px;
+}
+
+
+/* ========================================
+   HEART
+   ======================================== */
+
+.heart {
+    font-size: 55px;
+
+    animation:
+        heartbeat 1.5s infinite;
+}
+
+
+@keyframes heartbeat {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.18);
+    }
+}
+
+
+.name {
+    font-size: 20px;
+
+    margin:
+        20px
+        0
+        35px;
+
+    font-style: italic;
+}
+
+
+/* ========================================
+   BUTTON
+   ======================================== */
+
+button {
+    border: 1px solid
+        rgba(255,255,255,0.4);
+
+    background:
+        rgba(255,255,255,0.08);
+
+    color: white;
+
+    padding:
+        13px
+        25px;
+
+    border-radius: 30px;
+
+    font-size: 14px;
+
+    font-family: inherit;
+
+    cursor: pointer;
+
+    transition:
+        0.3s ease;
+}
+
+
+button:hover {
+    background:
+        rgba(255,255,255,0.2);
+
+    transform:
+        scale(1.05);
+}
+
+
+button:active {
+    transform:
+        scale(0.97);
+}
+
+
+/* ========================================
+   PAGE NUMBER
+   ======================================== */
+
+.page-number {
+    font-size: 11px;
+
+    letter-spacing: 4px;
+
+    opacity: 0.5;
+
+    margin-bottom: 10px;
+}
+
+
+/* ========================================
+   MESSAGE
+   ======================================== */
+
+.message {
+    background:
+        rgba(255,255,255,0.07);
+
+    border:
+        1px solid
+        rgba(255,255,255,0.12);
+
+    border-radius: 25px;
+
+    padding:
+        30px 25px;
+
+    line-height: 1.9;
+
+    font-size: 15px;
+
+    text-align: left;
+
+    margin-bottom: 25px;
+}
+
+
+.message p {
+    margin-bottom: 22px;
+}
+
+
+.big-heart {
+    text-align: center;
+
+    font-size: 45px;
+
+    opacity: 0.8;
+}
+
+
+/* ========================================
+   PAGE 3 PHOTO GRID
+   FULL PHOTO VISIBLE
+   ======================================== */
+
+.photo-grid {
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 12px;
+
+    margin-bottom: 22px;
+
+    width: 100%;
+}
+
+
+.photo-grid img {
+    width: 100%;
+
+    height: 210px;
+
+    /*
+       IMPORTANT:
+       contain keeps the COMPLETE photo visible.
+       It won't crop her face.
+    */
+
+    object-fit: contain;
+
+    background: #08080d;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.12);
+
+    border-radius: 15px;
+
+    display: block;
+
+    box-shadow:
+        0 10px 30px
+        rgba(0,0,0,0.45);
+
+    transition:
+        transform 0.3s ease;
+}
+
+
+.photo-grid img:hover {
+    transform:
+        scale(1.03);
+}
+
+
+/* ========================================
+   CAPTION
+   ======================================== */
+
+.caption {
+    font-size: 14px;
+
+    line-height: 1.7;
+
+    opacity: 0.8;
+
+    margin-bottom: 25px;
+
+    max-width: 330px;
+
+    margin-left: auto;
+
+    margin-right: auto;
+}
+
+
+/* ========================================
+   PAGE 4 PHOTO STACK
+   FULL PHOTO VISIBLE
+   ======================================== */
+
+.photo-stack {
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 12px;
+
+    margin-bottom: 25px;
+
+    width: 100%;
+}
+
+
+.photo-stack img {
+    width: 100%;
+
+    height: 220px;
+
+    /*
+       Shows the whole photo.
+       No face cropping.
+    */
+
+    object-fit: contain;
+
+    background: #08080d;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.12);
+
+    border-radius: 18px;
+
+    display: block;
+
+    box-shadow:
+        0 12px 30px
+        rgba(0,0,0,0.5);
+
+    transition:
+        transform 0.3s ease;
+}
+
+
+.photo-stack img:hover {
+    transform:
+        scale(1.03);
+}
+
+
+/* ========================================
+   FINAL VIDEO
+   ======================================== */
+
+.video-box {
+    width: 100%;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    background: black;
+
+    margin-bottom: 25px;
+
+    box-shadow:
+        0 15px 40px
+        rgba(0,0,0,0.5);
+}
+
+
+.video-box video {
+    width: 100%;
+
+    max-height: 65vh;
+
+    display: block;
+
+    object-fit: contain;
+
+    background: black;
+}
+
+
+/* ========================================
+   FINAL MESSAGE
+   ======================================== */
+
+.final-message {
+    font-size: 18px;
+
+    line-height: 1.8;
+
+    margin-bottom: 25px;
+
+    color: #f5e8e2;
+}
+
+
+/* ========================================
+   NAVIGATION DOTS
+   ======================================== */
+
+.dots {
+    position: fixed;
+
+    bottom: 18px;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    display: flex;
+
+    gap: 8px;
+
+    z-index: 100;
+}
+
+
+.dot {
+    width: 7px;
+
+    height: 7px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,255,255,0.3);
+
+    transition:
+        0.3s ease;
+}
+
+
+.dot.active {
+    width: 22px;
+
+    border-radius: 10px;
+
+    background: white;
+}
+
+
+/* ========================================
+   MOBILE
+   ======================================== */
+
+@media (max-width: 500px) {
+
+    .page {
+        padding: 15px;
+    }
+
+
+    .page-content {
+        padding:
+            20px 10px;
+    }
+
+
+    h2 {
+        font-size: 28px;
+    }
+
+
+    .photo-grid img {
+        height: 180px;
+    }
+
+
+    .photo-stack img {
+        height: 190px;
+    }
+
+
+    .message {
+        font-size: 14px;
+
+        line-height: 1.8;
+
+        padding:
+            25px 20px;
+    }
+
+
+    .final-message {
+        font-size: 16px;
+
+        line-height: 1.7;
+    }
+
+}
+
+
+/* ========================================
+   SMALL PHONES
+   ======================================== */
+
+@media (max-height: 700px) {
+
+    .photo-grid img {
+        height: 150px;
+    }
+
+
+    .photo-stack img {
+        height: 160px;
+    }
+
+
+    h2 {
+        font-size: 26px;
+    }
+
+
+}/* ========================================
+   SINGLE PHOTO PAGE
+   ======================================== */
+
+.photo-single {
+    width: 100%;
+    margin-bottom: 25px;
+}
+
+.photo-single img {
+    width: 100%;
+    max-height: 55vh;
+
+    object-fit: contain;
+
+    background: #08080d;
+
+    border-radius: 20px;
+
+    border: 1px solid rgba(255,255,255,0.12);
+
+    display: block;
+
+    box-shadow:
+        0 15px 40px
+        rgba(0,0,0,0.5);
+}
